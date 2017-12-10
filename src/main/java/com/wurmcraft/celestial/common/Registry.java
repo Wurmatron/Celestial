@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.potion.Potion;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
@@ -20,6 +21,7 @@ public class Registry {
 	public static List <Item> items = new ArrayList <> ();
 	public static List <Block> blocks = new ArrayList <> ();
 	public static HashMap <Block, Item> blockItems = new HashMap <> ();
+	public static List <Potion> potions = new ArrayList <> ();
 
 	public static void registerItem (Item item,String registryName) {
 		item.setRegistryName (registryName);
@@ -35,6 +37,10 @@ public class Registry {
 		itemBlock.setRegistryName (registryName);
 		blocks.add (block);
 		blockItems.put (block,itemBlock);
+	}
+
+	public static void registerPotion (Potion potion) {
+		potions.add (potion);
 	}
 
 	private static void createModel (Block block) {
@@ -64,5 +70,10 @@ public class Registry {
 			createModel (item);
 		for (Item item : Registry.blockItems.values ())
 			createModel (item);
+	}
+
+	@SubscribeEvent
+	public static void registerPotions (RegistryEvent.Register <Potion> event) {
+		event.getRegistry ().registerAll (potions.toArray (new Potion[0]));
 	}
 }
