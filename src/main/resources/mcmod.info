@@ -1,0 +1,16 @@
+[
+{
+  "modid": "celestial",
+  "name": "Celestial",
+  "description": "Adds Difficulty To Late Game Minecraft",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Wurmatron"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
