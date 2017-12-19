@@ -3,6 +3,7 @@ config.debug.name=Enable / Disable Debug Mode
 
 # Items
 item.bowThanatos.name=§6Bow of Thanatos
+item.worldGlobe.name=§c[WIP] §aWorld Globe
 
 # Tooltip
 tooltip.bowMode.name=§9Mode: §r%MODE%
@@ -11,11 +12,13 @@ tooltip.modeLightning.name=§eLightning
 tooltip.modeArctic.name=§bArctic
 tooltip.modeRegular.name=§7Regular
 tooltip.modeRain.name=§3Rain
+tooltip.modeHoming.name=§dHoming
 tooltip.bowExplosiveSize.name=§9Explosive: §6%SIZE%
 tooltip.bowLightningAmount.name=§9Strikes: §6%AMOUNT%
 tooltip.bowArcticTime.name=§9Time: §6%TIME%
-tooltip.bowRegularDamage.name=§9Damage: §6%DAMAGE%
+tooltip.bowDamage.name=§9Damage: §6%DAMAGE%
 tooltip.bowRainDamage.name=§9Radius: §6%RADIUS%
+tooltip.worldglobe.description=§bAllows Teleportation To Anywhere You Can Imagine.
 
 # Entity
 entity.explosiveArrow.name=Explosive Arrow
@@ -23,6 +26,10 @@ entity.lightningArrow.name=Lightning Arrow
 entity.arcticArrow.name=Arctic Arrow
 entity.regularArrow.name=Regular Arrow
 entity.rainArrow.name=Rain Arrow
+entity.homingArrow.name=Homing Arrow
 
 # Chat
 chat.modeChanged.name=§9Mode has changed to §r%MODE%
+
+# Creative Tabs
+itemGroup.celestial=Celestial

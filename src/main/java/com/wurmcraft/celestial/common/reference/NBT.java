@@ -17,5 +17,6 @@ public class NBT {
 	public static final String MODE_ARCTIC = "arctic";
 	public static final String MODE_REGULAR = "regular";
 	public static final String MODE_RAIN = "rain";
+	public static final String MODE_HOMING = "homing";
 
 }

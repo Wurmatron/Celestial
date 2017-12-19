@@ -1,5 +1,6 @@
 package com.wurmcraft.celestial.common.items.weapons;
 
+import com.wurmcraft.celestial.Celestial;
 import com.wurmcraft.celestial.api.items.CelestialItems;
 import com.wurmcraft.celestial.common.entity.*;
 import com.wurmcraft.celestial.common.reference.Local;
@@ -34,14 +35,14 @@ public class BowThanatos extends ItemBow {
 
 	private static final String DEFAULT_MODE = NBT.MODE_EXPLOSIVE;
 
-	private static final String[] MODES = new String[] {NBT.MODE_EXPLOSIVE,NBT.MODE_LIGHTNING,NBT.MODE_ARCTIC,NBT.MODE_REGULAR,NBT.MODE_RAIN};
+	private static final String[] MODES = new String[] {NBT.MODE_EXPLOSIVE,NBT.MODE_LIGHTNING,NBT.MODE_ARCTIC,NBT.MODE_REGULAR,NBT.MODE_RAIN,NBT.MODE_HOMING};
 	private static final HashMap <String, Float> MODES_DEFAULT_DATA = new HashMap <> ();
 
 	public BowThanatos () {
 		setMaxStackSize (1);
 		setMaxDamage (-1);
 		setUnlocalizedName ("bowThanatos");
-		setCreativeTab (CreativeTabs.COMBAT);
+		setCreativeTab (Celestial.tabCelestial);
 		addPropertyOverride (new ResourceLocation ("pull"),new IItemPropertyGetter () {
 			@SideOnly (Side.CLIENT)
 			public float apply (ItemStack stack,@Nullable World world,@Nullable EntityLivingBase entity) {
@@ -62,6 +63,7 @@ public class BowThanatos extends ItemBow {
 		MODES_DEFAULT_DATA.put (NBT.MODE_ARCTIC,100f);
 		MODES_DEFAULT_DATA.put (NBT.MODE_REGULAR,15f);
 		MODES_DEFAULT_DATA.put (NBT.MODE_RAIN,5f);
+		MODES_DEFAULT_DATA.put (NBT.MODE_HOMING,10f);
 	}
 
 	public static float getArrowVelocity (int charge) {
@@ -91,9 +93,8 @@ public class BowThanatos extends ItemBow {
 
 	@Override
 	public void getSubItems (CreativeTabs tab,NonNullList <ItemStack> items) {
-		if (tab == CreativeTabs.COMBAT) {
+		if (tab == Celestial.tabCelestial)
 			items.add (create (DEFAULT_MODE,MODES_DEFAULT_DATA.get (DEFAULT_MODE)));
-		}
 	}
 
 	@Override
@@ -140,6 +141,8 @@ public class BowThanatos extends ItemBow {
 					return new EntityRegularArrow (world,player,stack.getTagCompound () != null && stack.getTagCompound ().hasKey (NBT.MODE_DATA) && stack.getTagCompound ().getFloat (NBT.MODE_DATA) > 0 ? (int) (stack.getTagCompound ().getFloat (NBT.MODE_DATA) * power) : 1);
 				case (NBT.MODE_RAIN):
 					return new EntityRainArrow (world,player,stack.getTagCompound () != null && stack.getTagCompound ().hasKey (NBT.MODE_DATA) && stack.getTagCompound ().getFloat (NBT.MODE_DATA) > 0 ? (int) (stack.getTagCompound ().getFloat (NBT.MODE_DATA) + power) : 1);
+				case (NBT.MODE_HOMING):
+					return new EntityHomingArrow (world,player,stack.getTagCompound () != null && stack.getTagCompound ().hasKey (NBT.MODE_DATA) && stack.getTagCompound ().getFloat (NBT.MODE_DATA) > 0 ? (int) (stack.getTagCompound ().getFloat (NBT.MODE_DATA) * power) : 1);
 			}
 		}
 		return null;
@@ -157,8 +160,8 @@ public class BowThanatos extends ItemBow {
 				tip.add (I18n.translateToLocal (Local.TOOLTIP_BOW_LIGHTING_AMOUNT).replaceAll ("%AMOUNT%","" + ((int) stack.getTagCompound ().getFloat (NBT.MODE_DATA) + power)));
 			else if (mode.equalsIgnoreCase (NBT.MODE_ARCTIC))
 				tip.add (I18n.translateToLocal (Local.TOOLTIP_BOW_ARCTIC_AMOUNT).replaceAll ("%TIME%","" + ((int) stack.getTagCompound ().getFloat (NBT.MODE_DATA) * power)));
-			else if (mode.equalsIgnoreCase (NBT.MODE_REGULAR))
-				tip.add (I18n.translateToLocal (Local.TOOLTIP_BOW_REGULAR_DAMAGE).replaceAll ("%DAMAGE%","" + ((int) stack.getTagCompound ().getFloat (NBT.MODE_DATA) * power)));
+			else if (mode.equalsIgnoreCase (NBT.MODE_REGULAR) || mode.equalsIgnoreCase (NBT.MODE_HOMING))
+				tip.add (I18n.translateToLocal (Local.TOOLTIP_BOW_DAMAGE).replaceAll ("%DAMAGE%","" + ((int) stack.getTagCompound ().getFloat (NBT.MODE_DATA) * power)));
 			else if (mode.equalsIgnoreCase (NBT.MODE_RAIN))
 				tip.add (I18n.translateToLocal (Local.TOOLTIP_BOW_RAIN_DAMAGE).replaceAll ("%RADIUS%","" + ((int) stack.getTagCompound ().getFloat (NBT.MODE_DATA) + power)));
 		}
@@ -177,6 +180,8 @@ public class BowThanatos extends ItemBow {
 				return I18n.translateToLocal (Local.TOOLTIP_MODE_REGULAR);
 			case (NBT.MODE_RAIN):
 				return I18n.translateToLocal (Local.TOOLTIP_MODE_RAIN);
+			case (NBT.MODE_HOMING):
+				return I18n.translateToLocal (Local.TOOLTIP_MODE_HOMING);
 			default:
 				return "";
 		}

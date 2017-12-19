@@ -7,4 +7,7 @@ public class CelestialItems {
 	// Weapons
 	public static Item bowThanatos;
 
+	// Special
+	public static Item worldGlobe;
+
 }
