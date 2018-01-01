@@ -1,0 +1,6 @@
+{
+    "parent": "celestial:item/bowthanatos",
+    "textures": {
+        "layer0": "celestial:items/bowthanatos_pulling_0"
+    }
+}

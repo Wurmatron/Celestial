@@ -23,7 +23,7 @@ public class GuiHandler implements IGuiHandler {
 	public Object getClientGuiElement (int ID,EntityPlayer player,World world,int x,int y,int z) {
 		switch (ID) {
 			case (WORLDGLOBE_ID):
-				return new GuiWorldGlobe (player,player.getActiveItemStack ());
+				return new GuiWorldGlobe (player,player.getHeldItemMainhand ());
 			default:
 				return null;
 		}

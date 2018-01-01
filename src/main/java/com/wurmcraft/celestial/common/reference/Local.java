@@ -19,8 +19,11 @@ public class Local {
 	public static final String TOOLTIP_BOW_DAMAGE = "tooltip.bowDamage.name";
 	public static final String TOOLTIP_BOW_RAIN_DAMAGE = "tooltip.bowRainDamage.name";
 	public static final String TOOLTIP_WORLDGLOBE_DESCRIPTION = "tooltip.worldglobe.description";
+	public static final String TOOLTIP_OWNER = "tooltip.owner.name";
+	public static final String TOOLTIP_SELECTED_TELEPORT = "tooltip.worldGlobeTeleport.name";
 
 	// Chat
 	public static final String CHAT_MODE_CHANGED = "chat.modeChanged.name";
+	public static final String CHAT_NO_SELECTED_TELEPORT = "chat.noSelectedTeleport.name";
 
 }

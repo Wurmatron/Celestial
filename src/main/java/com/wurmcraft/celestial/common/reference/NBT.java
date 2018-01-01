@@ -18,5 +18,13 @@ public class NBT {
 	public static final String MODE_REGULAR = "regular";
 	public static final String MODE_RAIN = "rain";
 	public static final String MODE_HOMING = "homing";
+	public static final String OWNER = "owner";
+	public static final String DATA = "data";
+	public static final String NAME = "name";
+	public static final String X = "posX";
+	public static final String Y = "posY";
+	public static final String Z = "posZ";
+	public static final String DIMENSION = "dimension";
+	public static final String TELEPORT_LOCATION = "location";
 
 }

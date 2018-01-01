@@ -19,6 +19,8 @@ tooltip.bowArcticTime.name=§9Time: §6%TIME%
 tooltip.bowDamage.name=§9Damage: §6%DAMAGE%
 tooltip.bowRainDamage.name=§9Radius: §6%RADIUS%
 tooltip.worldglobe.description=§bAllows Teleportation To Anywhere You Can Imagine.
+tooltip.owner.name=§dOwner: §a%OWNER%
+tooltip.worldGlobeTeleport.name=§3Location: §9%LOCATION%
 
 # Entity
 entity.explosiveArrow.name=Explosive Arrow
@@ -30,6 +32,7 @@ entity.homingArrow.name=Homing Arrow
 
 # Chat
 chat.modeChanged.name=§9Mode has changed to §r%MODE%
+chat.noSelectedTeleport.name=§cTeleport location has been set!
 
 # Creative Tabs
 itemGroup.celestial=Celestial

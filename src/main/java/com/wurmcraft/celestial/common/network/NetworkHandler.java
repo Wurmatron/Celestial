@@ -16,6 +16,7 @@ public class NetworkHandler {
 
 	public static void registerPackets () {
 		registerMessage (OpenGuiMessage.class);
+		registerMessage (SelectTeleportMessage.class);
 	}
 
 	private static final <T extends CustomMessage <T> & IMessageHandler <T, IMessage>> void registerMessage (Class <T> clazz) {
