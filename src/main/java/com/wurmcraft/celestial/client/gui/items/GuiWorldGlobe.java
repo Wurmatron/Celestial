@@ -57,16 +57,16 @@ public class GuiWorldGlobe extends GuiScreen {
 		int worldDataID = 9;
 		List <WorldData> worldData = WorldGlobe.getGlobeData (stack);
 		if (worldData.size () > 0)
-			for (int index = 0; index < worldData.size (); index++)
-				if (index < 10) {
-					GuiTexturedButton button = new GuiTexturedButton (worldDataID++,startWidth + 7,startHeight + 7 + (index * 15),96,14,BACKGROUND,58,164,false,true,worldData.get (index).getName ());
-					if ((worldDataID - 10) == selectedSlot)
-						button.enabled = false;
-					buttonList.add (button);
-				}
-		if (slide <= 0)
-			up.enabled = false;
-		if (worldData.size () <= 10)
+			if (slide <= 0)
+				up.enabled = false;
+		for (int index = slide; index < worldData.size (); index++)
+			if ((index - slide) < 10) {
+				GuiTexturedButton button = new GuiTexturedButton (worldDataID++ + slide,startWidth + 7,startHeight + 7 + ((index - slide) * 15),96,14,BACKGROUND,58,164,false,true,worldData.get (index).getName ());
+				if (selectedSlot == (worldDataID - 10) && slide == 0 || selectedSlot - slide == (worldDataID - 10) + 1 && slide > 0)
+					button.enabled = false;
+				buttonList.add (button);
+			}
+		if (worldData.size () - slide <= 10)
 			down.enabled = false;
 	}
 
@@ -80,17 +80,16 @@ public class GuiWorldGlobe extends GuiScreen {
 		super.actionPerformed (button);
 		if (button.id >= 9) {
 			NetworkHandler.sendToServer (new SelectTeleportMessage (button.id - 9));
-			buttonList.clear ();
-			selectedSlot = button.id - 9;
-			redrawButtons ();
+			selectedSlot = slide + button.id - 9;
 		}
-		if (button.id == 0) {
-			// UP
-		} else if (button.id == 1) {
+		if (button.id == 1 && button.enabled) {
+			if (slide > 0)
+				slide--;
+		} else if (button.id == 0 && button.enabled)
 			slide++;
-			buttonList.clear ();
-			redrawButtons ();
-		}
+		if (slide + 10 > WorldGlobe.getGlobeData (stack).size ())
+			slide = WorldGlobe.getGlobeData (stack).size () - 10;
+		redrawButtons ();
 	}
 
 	private void redrawButtons () {

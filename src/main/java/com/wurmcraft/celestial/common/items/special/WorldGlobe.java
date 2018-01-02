@@ -146,7 +146,9 @@ public class WorldGlobe extends ItemBound {
 	}
 
 	private WorldData getWorldDataFromIndex (ItemStack stack,int index) {
-		return getGlobeData (stack).get (index);
+		if (index <= getGlobeData (stack).size ())
+			return getGlobeData (stack).get (index);
+		return null;
 	}
 
 	private String getNameFromIndex (ItemStack stack,int index) {
