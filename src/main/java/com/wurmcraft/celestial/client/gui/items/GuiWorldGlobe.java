@@ -79,20 +79,20 @@ public class GuiWorldGlobe extends GuiScreen {
 	protected void actionPerformed (GuiButton button) throws IOException {
 		super.actionPerformed (button);
 		if (button.id >= 9) {
-			NetworkHandler.sendToServer (new SelectTeleportMessage (button.id - 9));
-			selectedSlot = slide + button.id - 9;
+			int index = WorldGlobe.getIndexFromName (stack,button.displayString);
+			NetworkHandler.sendToServer (new SelectTeleportMessage (index));
+			mc.currentScreen = null;
 		}
 		if (button.id == 1 && button.enabled) {
 			if (slide > 0)
 				slide--;
 		} else if (button.id == 0 && button.enabled)
 			slide++;
-		if (slide + 10 > WorldGlobe.getGlobeData (stack).size ())
-			slide = WorldGlobe.getGlobeData (stack).size () - 10;
 		redrawButtons ();
 	}
 
 	private void redrawButtons () {
+		buttonList.clear ();
 		initGui ();
 	}
 }

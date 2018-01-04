@@ -140,19 +140,29 @@ public class WorldGlobe extends ItemBound {
 			worldData.add (new WorldData ("Eight-Three",8,80,0,0));
 			worldData.add (new WorldData ("Nine-Three",9,80,0,0));
 			worldData.add (new WorldData ("Ten-Three",10,80,0,0));
+			for (int index = 0; index < 20; index++)
+				worldData.add (new WorldData ("Auto " + index,index * 10,80,index * 10,0));
 			setWorldData (new ItemStack (this,1),worldData);
 			items.add (setWorldData (new ItemStack (this,1),worldData));
 		}
 	}
 
-	private WorldData getWorldDataFromIndex (ItemStack stack,int index) {
+	public static WorldData getWorldDataFromIndex (ItemStack stack,int index) {
 		if (index <= getGlobeData (stack).size ())
 			return getGlobeData (stack).get (index);
 		return null;
 	}
 
-	private String getNameFromIndex (ItemStack stack,int index) {
+	public static String getNameFromIndex (ItemStack stack,int index) {
 		List <WorldData> data = getGlobeData (stack);
 		return index < data.size () && data.get (index) != null ? data.get (index).getName () : "None";
+	}
+
+	public static int getIndexFromName (ItemStack stack,String name) {
+		List <WorldData> data = getGlobeData (stack);
+		for (int index = 0; index < data.size (); index++)
+			if (data.get (index).getName ().equals (name))
+				return index;
+		return -1;
 	}
 }
