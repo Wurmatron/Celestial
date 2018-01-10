@@ -21,6 +21,7 @@ tooltip.bowRainDamage.name=§9Radius: §6%RADIUS%
 tooltip.worldglobe.description=§bAllows Teleportation To Anywhere You Can Imagine.
 tooltip.owner.name=§dOwner: §a%OWNER%
 tooltip.worldGlobeTeleport.name=§3Location: §9%LOCATION%
+tooltip.energyTeleport.name=§3Energy Left: §9%ENERGY%
 
 # Entity
 entity.explosiveArrow.name=Explosive Arrow
@@ -33,6 +34,7 @@ entity.homingArrow.name=Homing Arrow
 # Chat
 chat.modeChanged.name=§9Mode has changed to §r%MODE%
 chat.noSelectedTeleport.name=§cTeleport location has been set!
+chat.teleportEnergy.name=§cYou Don't have enough energy to do that!
 
 # Creative Tabs
 itemGroup.celestial=Celestial

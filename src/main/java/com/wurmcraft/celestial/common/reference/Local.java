@@ -21,9 +21,11 @@ public class Local {
 	public static final String TOOLTIP_WORLDGLOBE_DESCRIPTION = "tooltip.worldglobe.description";
 	public static final String TOOLTIP_OWNER = "tooltip.owner.name";
 	public static final String TOOLTIP_SELECTED_TELEPORT = "tooltip.worldGlobeTeleport.name";
+	public static final String TOOLTIP_ENERGY_TELEPORT = "tooltip.energyTeleport.name";
 
 	// Chat
 	public static final String CHAT_MODE_CHANGED = "chat.modeChanged.name";
 	public static final String CHAT_NO_SELECTED_TELEPORT = "chat.noSelectedTeleport.name";
+	public static final String CHAT_NO_TELEPORT_ENERGY = "chat.teleportEnergy.name";
 
 }

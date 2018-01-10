@@ -26,5 +26,6 @@ public class NBT {
 	public static final String Z = "posZ";
 	public static final String DIMENSION = "dimension";
 	public static final String TELEPORT_LOCATION = "location";
+	public static final String ENERGY = "energy";
 
 }

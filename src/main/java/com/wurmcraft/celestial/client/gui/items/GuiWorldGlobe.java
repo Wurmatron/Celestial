@@ -1,13 +1,14 @@
 package com.wurmcraft.celestial.client.gui.items;
 
 import com.wurmcraft.celestial.api.items.WorldData;
+import com.wurmcraft.celestial.client.gui.GuiHandler;
 import com.wurmcraft.celestial.client.gui.helper.GuiTexturedButton;
 import com.wurmcraft.celestial.common.items.special.WorldGlobe;
 import com.wurmcraft.celestial.common.network.NetworkHandler;
+import com.wurmcraft.celestial.common.network.OpenGuiMessage;
 import com.wurmcraft.celestial.common.network.SelectTeleportMessage;
 import com.wurmcraft.celestial.common.reference.Global;
 import com.wurmcraft.celestial.common.reference.NBT;
-import com.wurmcraft.celestial.common.utils.LogHandler;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -81,7 +82,10 @@ public class GuiWorldGlobe extends GuiScreen {
 		if (button.id >= 9) {
 			int index = WorldGlobe.getIndexFromName (stack,button.displayString);
 			NetworkHandler.sendToServer (new SelectTeleportMessage (index));
-			mc.currentScreen = null;
+			if (!isShiftKeyDown ())
+				mc.currentScreen = null;
+			else
+				NetworkHandler.sendToServer (new OpenGuiMessage (GuiHandler.WORLDGLOBE_CREATION_ID,player.getPosition ()));
 		}
 		if (button.id == 1 && button.enabled) {
 			if (slide > 0)
