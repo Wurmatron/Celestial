@@ -4,6 +4,14 @@ config.debug.name=Enable / Disable Debug Mode
 # Items
 item.bowThanatos.name=§6Bow of Thanatos
 item.worldGlobe.name=§c[WIP] §aWorld Globe
+item.demiHead.name=Demi-God Helmet
+item.demiChest.name=Demi-God Chestplate
+item.demiLegs.name=Demi-God Leggings
+item.demiFeet.name=Demi-God Boots
+item.celestialHead.name=Celestial Helmet
+item.celestialChest.name=Celestial Chestplate
+item.celestialLegs.name=Celestial Leggings
+item.celestialFeet.name=Celestial Boots
 
 # Tooltip
 tooltip.bowMode.name=§9Mode: §r%MODE%
