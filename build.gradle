@@ -8,6 +8,9 @@ buildscript {
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
+plugins {
+    id 'com.diffplug.gradle.spotless' version '3.4.0'
+}
 
 version = "${mod_version}"
 group = "com.wurmcraft.celestial" 
@@ -24,6 +27,15 @@ minecraft {
     mappings = "${mcp_map}"
 	replace "@VERSION@", project.version
     replaceIn "Global.java"
+}
+
+spotless {
+    java {
+        removeUnusedImports()
+        indentWithSpaces()
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
 }
 
 dependencies {}
